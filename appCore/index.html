@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload App</title>
+</head>
+<body>
+    
+    
+    <!-- les traitements js -->
+    <script>
+        const urlBase = "http://localhost/uploadfilleapp/appBackend/"
+        const uploaderName = uploadApp.uploaderName
+        const fileName = uploadApp.fileName
+        const sendBtn = uploadApp.sendBtn
+        let data = {}
+        
+        async function sendFile() {
+            await fetch(urlBase + "sendController.php", {
+            method: "POST",
+            body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => console.log(data.message))
+            .catch(error => console.log(error));
+        }
+        
+        sendBtn.onclick = () =>{
+            data[fileName.name] = fileName.file
+            data[uploaderName.name] = uploaderName.value
+            // sendFile()
+            console.log(data);
+        }
+
+    </script>
+</body>
+</html>
